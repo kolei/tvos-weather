@@ -22,9 +22,10 @@ class ViewControllerMap: UIViewController, UITextFieldDelegate {
 
         // Do any additional setup after loading the view.
         
+        // при первом показе скрываем окно с информацией (ее еще нет, пока мы не выбрали город)
         viewBG.isHidden = true
-        tfCityName.updateFocusIfNeeded()
         
+        // привязываем текстовое поле к текущему контроллеру, чтобы сработал вызов функции textFieldShouldReturn
         tfCityName.delegate = self
     }
 
@@ -44,6 +45,12 @@ class ViewControllerMap: UIViewController, UITextFieldDelegate {
         let coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: lat, longitude: lon), latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         
         mapView.setRegion(coordinateRegion, animated: true)
+        
+        // добавление геометки
+//        let annotation = MKPointAnnotation()
+//        annotation.title = "описание метки"
+//        annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+//        mapView.addAnnotation(annotation)
     }
     
     func searchCity(city: String){
